@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import BookList from '../components/BookList';
+import CategoryFilter from '../components/CategoryFilter';
 // import CategoryFilter from '../components/CategoryFilter';
 // import ProjectList from '../components/ProjectList';
 // import WelcomeBand from '../components/WelcomeBand';
@@ -11,7 +12,8 @@ function BookPage() {
     return (
         <>
         <div>
-            <p>Category filter</p>
+            <CategoryFilter selectedCategories={selectedCategories}
+            setSelectedCategories={setSelectedCategories}/>
         </div>
         <div>
             <BookList selectedCategories={selectedCategories} />

@@ -13,8 +13,11 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
 
   useEffect(() => {
     const fetchBooks = async () => {
+      const categoryParams = selectedCategories
+      .map((cat) => `category=${encodeURIComponent(cat)}`)
+      .join('&');
       const response = await fetch(
-        `https://localhost:5000/api/Book/book?pageSize=${pageSize}&pageNum=${pageNum}`
+        `https://localhost:5000/api/Book/book?pageSize=${pageSize}&pageNum=${pageNum}${selectedCategories.length ? `&${categoryParams}` : ''}`
       );
       const data = await response.json();
       setBooks(data.books);
@@ -22,7 +25,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
     };
 
     fetchBooks();
-  }, [pageSize, pageNum, totalItems]);
+  }, [pageSize, pageNum, selectedCategories]);
 
   // Sort books based on the title and the current sortOrder
   const sortedBooks = books.sort((a, b) => {
@@ -36,7 +39,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
 
   return (
     <div className="book-list-container">
-      <h1 className="book-list-title">Book Projects</h1>
+      <h1 className="book-list-title">Books</h1>
       <div className="sort-container">
         {/* Sort by title button */}
         <button
@@ -69,6 +72,9 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
                   </li>
                   <li>
                     <strong>Number Of Pages:</strong> {b.pageCount}
+                  </li>
+                  <li>
+                    <strong>Category:</strong> {b.category}
                   </li>
                   <li>
                     <strong>Price:</strong> ${b.price}
