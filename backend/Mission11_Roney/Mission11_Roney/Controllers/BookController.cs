@@ -17,14 +17,22 @@ using Mission11_Roney.Data;
         }
 
         [HttpGet("book", Name = "GetBooks")]
-        public IActionResult GetBooks(int pageSize = 5, int pageNum = 1)
+        public IActionResult GetBooks(int pageSize = 5, int pageNum = 1, [FromQuery] List<string>? bookCategories= null)
         {
-            var something = _context.Books
+            IQueryable<Book> query = _context.Books.AsQueryable();
+
+            if (bookCategories != null && bookCategories.Any())
+            {
+                query = query.Where(b => bookCategories.Contains(b.Category ?? ""));
+            }
+            
+
+            var something = query
                 .Skip((pageNum-1) * pageSize)
                 .Take(pageSize)
                 .ToList();
             
-            var totalNumBooks = _context.Books.Count();
+            var totalNumBooks = query.Count();
 
             var someObject = new
             {
@@ -32,6 +40,16 @@ using Mission11_Roney.Data;
                 TotalNumBooks = totalNumBooks
             };
             return Ok(someObject);
+        }
+
+        [HttpGet("GetBookCategories")]
+        public IActionResult GetBookCategories()
+        {
+            var bookCategories = _context.Books
+            .Select(p => p.Category)
+            .Distinct()
+            .ToList();
+            return Ok(bookCategories);
         }
         
     }

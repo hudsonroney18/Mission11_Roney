@@ -131,3 +131,4 @@
 /Users/hudsonroney/RiderProjects/Mission11_Roney/backend/Mission11_Roney/Mission11_Roney/obj/Debug/net8.0/Mission11_Roney.pdb
 /Users/hudsonroney/RiderProjects/Mission11_Roney/backend/Mission11_Roney/Mission11_Roney/obj/Debug/net8.0/Mission11_Roney.genruntimeconfig.cache
 /Users/hudsonroney/RiderProjects/Mission11_Roney/backend/Mission11_Roney/Mission11_Roney/obj/Debug/net8.0/ref/Mission11_Roney.dll
+/Users/hudsonroney/RiderProjects/Mission11_Roney/backend/Mission11_Roney/Mission11_Roney/obj/Debug/net8.0/Mission11_Roney.sourcelink.json
