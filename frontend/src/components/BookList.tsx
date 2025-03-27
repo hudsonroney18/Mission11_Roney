@@ -14,7 +14,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   useEffect(() => {
     const fetchBooks = async () => {
       const categoryParams = selectedCategories
-      .map((cat) => `category=${encodeURIComponent(cat)}`)
+      .map((cat) => `bookCategories=${encodeURIComponent(cat)}`)
       .join('&');
       const response = await fetch(
         `https://localhost:5000/api/Book/book?pageSize=${pageSize}&pageNum=${pageNum}${selectedCategories.length ? `&${categoryParams}` : ''}`
@@ -28,7 +28,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   }, [pageSize, pageNum, selectedCategories]);
 
   // Sort books based on the title and the current sortOrder
-  const sortedBooks = books.sort((a, b) => {
+  const sortedBooks = [...books].sort((a, b) => {
     if (a.title < b.title) return sortOrder === 'asc' ? -1 : 1;
     if (a.title > b.title) return sortOrder === 'asc' ? 1 : -1;
     return 0;
@@ -80,6 +80,14 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
                     <strong>Price:</strong> ${b.price}
                   </li>
                 </ul>
+                <button
+                  className="btn btn-success"
+                  onClick={() =>
+                    navigate(`/AddtoCartPage/${b.title}/${b.bookID}/${b.price}`)
+                  }
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>
