@@ -24,5 +24,5 @@ dist-ssr
 *.sw?
 
 # Ignore build output and intermediate files
-backend/Mission11_Roney/Mission11_Roney/bin/
-backend/Mission11_Roney/Mission11_Roney/obj/
+bin/
+obj/
