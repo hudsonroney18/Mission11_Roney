@@ -2,9 +2,11 @@ import { useState } from 'react';
 import BookList from '../components/BookList';
 import CategoryFilter from '../components/CategoryFilter';
 import CartSummary from '../components/CartSummary';
+import { useNavigate } from 'react-router-dom';
 
 function BookPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -16,6 +18,15 @@ function BookPage() {
               selectedCategories={selectedCategories}
               setSelectedCategories={setSelectedCategories}
             />
+            <br></br>
+            <button
+              className="btn btn-success"
+              onClick={() =>
+                navigate(`/adminbooks`)
+              }
+            >
+              Admin Books
+            </button>
           </div>
           <div className="col-md-9">
             <BookList selectedCategories={selectedCategories} />
