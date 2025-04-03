@@ -3,6 +3,7 @@ import { Book } from '../types/book';
 import { useNavigate } from 'react-router-dom';
 import { fetchBooks } from '../api/booksApi';
 import Pagination from './Pagination';
+import './BookList.css'
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [books, setBooks] = useState<Book[]>([]);

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Book } from '../types/book';
 import { addBook } from '../api/booksApi';
+import './BookList.css'; // Apply styles from BookList.css
 
 interface NewBookFormProps {
   onSuccess: () => void;
@@ -31,7 +32,7 @@ const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="new-book-form" onSubmit={handleSubmit}>
       <h2>Add New Book</h2>
       <label>
         Title:
