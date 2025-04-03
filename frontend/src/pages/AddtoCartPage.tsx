@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext.tsx';
 import { CartItem } from '../types/cartItem.ts';
 import { useState } from 'react';
-import '/Users/hudsonroney/RiderProjects/Mission11_Roney/frontend/src/components/BookList.css'; // Import the CSS file to apply styles
+import '../components/BookList.css'; // Import the CSS file to apply styles
 
 function AddtoCartPage() {
   const navigate = useNavigate();
