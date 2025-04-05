@@ -7,6 +7,8 @@ import AdminBooksPage from './pages/adminBooks'; // Add the import for AdminBook
 import { CartProvider } from './context/CartContext';
 import CookieConsent from 'react-cookie-consent';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
               path="/AddtoCartPage/:title/:bookID/:price"
               element={<AddtoCartPage />}
             />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/CartPage" element={<CartPage />} />
             <Route path="/adminbooks" element={<AdminBooksPage />} />{' '}
             {/* Add the route for AdminBooksPage */}

@@ -5,6 +5,7 @@ import Pagination from '../components/Pagination';
 import NewBookForm from '../components/NewBookForm';
 import EditBookForm from '../components/EditBookForm';
 import { useNavigate } from 'react-router-dom';
+import CategoryFilter from '../components/CategoryFilter';
 
 const AdminBooksPage = () => {
   const [books, setBooks] = useState<Book[]>([]);
@@ -15,12 +16,14 @@ const AdminBooksPage = () => {
   const [totalPages, setTotalPages] = useState<number>(0);
   const [showForm, setShowForm] = useState(false);
   const [editingBook, setEditingBook] = useState<Book | null>(null);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const loadBooks = async () => {
       try {
-        const data = await fetchBooks(pageSize, pageNum, []);
+        const data = await fetchBooks(pageSize, pageNum, selectedCategories ?? []);
         setBooks(data.books);
         setTotalPages(Math.ceil(data.totalNumBooks / pageSize));
       } catch (err) {
@@ -31,7 +34,7 @@ const AdminBooksPage = () => {
     };
 
     loadBooks();
-  }, [pageSize, pageNum]);
+  }, [pageSize, pageNum, selectedCategories]);
 
   const handleDelete = async (bookID: number) => {
     const confirmDelete = window.confirm(
@@ -90,7 +93,12 @@ const AdminBooksPage = () => {
           onCancel={() => setEditingBook(null)}
         />
       )}
-
+      <h3>
+        <CategoryFilter
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
+        />
+      </h3>
       <table className="table table-bordered table-striped">
         <thead className="table-dark">
           <tr>
