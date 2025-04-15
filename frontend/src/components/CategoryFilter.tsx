@@ -14,7 +14,7 @@ function CategoryFilter({
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          'https://mission13-backend-hvbwgmb4ehh8akc7.westus3-01.azurewebsites.net/api/Book/GetBookCategories'
+          'https://localhost:5000/api/Book/GetBookCategories'
         );
         const data = await response.json();
         console.log('Fetched categories:', data);
