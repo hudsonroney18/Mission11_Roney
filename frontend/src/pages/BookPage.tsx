@@ -29,6 +29,7 @@ function BookPage() {
             </button>
           </div>
           <div className="col-md-9">
+            <h1 className="text-center text-primary">Book List</h1>
             <BookList selectedCategories={selectedCategories} />
           </div>
         </div>
